@@ -16,7 +16,7 @@ function useFeedingTimer(side: 'left' | 'right') {
   }, [lastFeeding, side]);
 
   useEffect(() => {
-    if (!shouldShow) return;
+    if (!shouldShow || !lastFeeding) return;
 
     const interval = setInterval(() => {
       const now = new Date().getTime();
