@@ -5,7 +5,6 @@ import '../styles/pastel-palette.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/sonner';
 import { ModeToggle } from '@/components/mode-toggle';
-import { ClearButton } from '@/components/clear-button';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -42,10 +41,7 @@ export default function RootLayout({
             <h1 className='text-2xl font-bold text-pastel-primary'>
               Milky Way
             </h1>
-            <div className={'space-x-2'}>
-              <ClearButton />
-              <ModeToggle />
-            </div>
+            <ModeToggle />
           </div>
           {children}
         </ThemeProvider>

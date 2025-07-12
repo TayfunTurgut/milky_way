@@ -8,9 +8,14 @@ import {
   PopoverContent,
   PopoverTrigger
 } from '@/components/ui/popover';
+import { PopoverClose } from '@radix-ui/react-popover';
 
-export function ClearButton() {
-  const { clearData } = useTrackingStore();
+interface ClearButtonProps {
+  id: string;
+}
+
+export function ClearButton({ id }: ClearButtonProps) {
+  const { clearEntry } = useTrackingStore();
 
   return (
     <Popover>
@@ -26,20 +31,18 @@ export function ClearButton() {
       <PopoverContent className='bg-pastel-card border-pastel-primary/20'>
         <div className='p-4'>
           <p className='text-sm text-pastel-primary font-medium mb-2'>
-            Clear all data?
+            Do you want to clear this entry?
           </p>
           <p className='text-xs text-pastel-secondary mb-4'>
-            This will permanently delete all feeding and diaper records.
+            You cannot undo this action.
           </p>
           <div className='flex justify-end space-x-2'>
-            <Button
-              variant='outline'
-              size='sm'
-              className='text-red-600 border-red-300 hover:bg-red-50 dark:text-red-400 dark:border-red-600 dark:hover:bg-red-900/20'
-              onClick={() => clearData()}
+            <PopoverClose
+              className='p-1 border-1 rounded-md text-red-600 border-red-300 hover:bg-red-50 dark:text-red-400 dark:border-red-600 dark:hover:bg-red-900/20'
+              onClick={() => clearEntry(id)}
             >
-              Yes, clear all
-            </Button>
+              Yes, clear
+            </PopoverClose>
           </div>
         </div>
       </PopoverContent>

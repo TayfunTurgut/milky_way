@@ -15,21 +15,21 @@ export function DiaperTracker() {
       label: 'Pee',
       icon: Droplets,
       color:
-        'bg-yellow-100 hover:bg-yellow-200 text-yellow-700 dark:bg-yellow-900/30 dark:hover:bg-yellow-800/40 dark:text-yellow-300'
+        'bg-blue-100 hover:bg-blue-200 text-blue-700 dark:bg-blue-900/30 dark:hover:bg-blue-800/40 dark:text-blue-300'
     },
     {
       type: 'poop',
       label: 'Poop',
       icon: Zap,
       color:
-        'bg-amber-100 hover:bg-amber-200 text-amber-800 dark:bg-amber-900/30 dark:hover:bg-amber-800/40 dark:text-amber-300'
+        'bg-orange-100 hover:bg-orange-200 text-orange-700 dark:bg-orange-900/30 dark:hover:bg-orange-800/40 dark:text-orange-300'
     },
     {
       type: 'both',
       label: 'Both',
       icon: Baby,
       color:
-        'bg-gradient-to-r from-yellow-100 to-amber-100 hover:from-yellow-200 hover:to-amber-200 text-amber-700 dark:from-yellow-900/30 dark:to-amber-900/30 dark:hover:from-yellow-800/40 dark:hover:to-amber-800/40 dark:text-amber-300'
+        'bg-gradient-to-r from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 text-purple-700 dark:from-purple-900/30 dark:to-pink-900/30 dark:hover:from-purple-800/40 dark:hover:to-pink-800/40 dark:text-purple-300'
     }
   ] as const;
 

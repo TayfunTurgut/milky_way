@@ -9,6 +9,7 @@ import {
 import { History } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTrackingStore } from '@/store';
+import { ClearButton } from '@/components/clear-button';
 
 export function FeedingHistory() {
   const { feedings } = useTrackingStore();
@@ -50,12 +51,15 @@ export function FeedingHistory() {
                         {new Date(feeding.timestamp).toLocaleString()}
                       </div>
                     </div>
-                    <div className='text-right'>
-                      <div className='text-sm font-medium text-pastel-primary'>
-                        {feeding.duration
-                          ? `${Math.floor(feeding.duration / 60)}:${(feeding.duration % 60).toString().padStart(2, '0')}`
-                          : 'Ongoing'}
+                    <div className='flex items-center gap-2'>
+                      <div className='text-right'>
+                        <div className='text-sm font-medium text-pastel-primary'>
+                          {feeding.duration
+                            ? `${Math.floor(feeding.duration / 60)}:${(feeding.duration % 60).toString().padStart(2, '0')}`
+                            : 'Ongoing'}
+                        </div>
                       </div>
+                      <ClearButton id={feeding.id} />
                     </div>
                   </div>
                 </div>

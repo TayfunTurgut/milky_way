@@ -11,7 +11,7 @@ interface TrackingStore {
   diapers: DiaperChange[];
   addDiaperChange: (diaper: Omit<DiaperChange, 'id'>) => void;
   getLastDiaperChange: () => DiaperChange | null;
-  clearData: () => void;
+  clearEntry: (id: string) => void;
 }
 
 export const useTrackingStore = create<TrackingStore>()(
@@ -66,11 +66,11 @@ export const useTrackingStore = create<TrackingStore>()(
         return lastFeeding.side === 'left' ? 'right' : 'left';
       },
 
-      clearData: () =>
-        set({
-          feedings: [],
-          diapers: []
-        })
+      clearEntry: id =>
+        set(state => ({
+          feedings: state.feedings.filter(f => f.id !== id),
+          diapers: state.diapers.filter(d => d.id !== id)
+        }))
     }),
     {
       name: 'milky-way-store'

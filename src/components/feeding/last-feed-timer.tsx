@@ -1,21 +1,32 @@
 import { useTrackingStore } from '@/store';
 import { Clock } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { ClientOnly } from '@/components/client-only';
+import { useInterval } from '@/hooks/use-interval';
 
 function useLastFeedTimer() {
   const { getLastFeeding } = useTrackingStore();
+
   const lastFeeding = getLastFeeding();
+  const [timeAgo, setTimeAgo] = useState<string | null>(null);
 
   const shouldShow = useMemo(() => {
     return lastFeeding && !lastFeeding.active;
   }, [lastFeeding]);
 
-  const timeAgo = useMemo(() => {
-    if (!lastFeeding) return null;
-    return formatDistanceToNow(lastFeeding.timestamp, { addSuffix: true });
-  }, [lastFeeding]);
+  useInterval(
+    () => {
+      if (!lastFeeding) {
+        setTimeAgo(null);
+        return;
+      }
+      setTimeAgo(
+        formatDistanceToNow(lastFeeding.timestamp, { addSuffix: true })
+      );
+    },
+    shouldShow ? 30000 : null
+  );
 
   return { shouldShow, timeAgo, lastFeeding };
 }

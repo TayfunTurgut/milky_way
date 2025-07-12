@@ -9,6 +9,7 @@ import {
 import { History, Droplets, Zap, Baby } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTrackingStore } from '@/store';
+import { ClearButton } from '@/components/clear-button';
 
 export function DiaperHistory() {
   const { diapers } = useTrackingStore();
@@ -77,6 +78,7 @@ export function DiaperHistory() {
                         </div>
                       </div>
                     </div>
+                    <ClearButton id={diaper.id} />
                   </div>
                 </div>
               ))}
