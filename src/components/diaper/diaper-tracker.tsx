@@ -4,7 +4,7 @@ import { useTrackingStore } from '@/store';
 import { DiaperHistory } from '@/components/diaper/diaper-history';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
-import { Baby, Droplets, Zap } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export function DiaperTracker() {
   const { addDiaperChange } = useTrackingStore();
@@ -13,23 +13,23 @@ export function DiaperTracker() {
     {
       type: 'pee',
       label: 'Pee',
-      icon: Droplets,
+      icon: '💧',
       color:
-        'bg-blue-100 hover:bg-blue-200 text-blue-700 dark:bg-blue-900/30 dark:hover:bg-blue-800/40 dark:text-blue-300'
+        'bg-yellow-50 hover:bg-yellow-100 text-yellow-600 dark:bg-yellow-700/30 dark:hover:bg-yellow-600/40 dark:text-yellow-100'
     },
     {
       type: 'poop',
       label: 'Poop',
-      icon: Zap,
+      icon: '💩',
       color:
-        'bg-orange-100 hover:bg-orange-200 text-orange-700 dark:bg-orange-900/30 dark:hover:bg-orange-800/40 dark:text-orange-300'
+        'bg-amber-200 hover:bg-amber-300 text-amber-900 dark:bg-amber-700/30 dark:hover:bg-amber-600/40 dark:text-amber-100'
     },
     {
       type: 'both',
       label: 'Both',
-      icon: Baby,
+      icon: '👶',
       color:
-        'bg-gradient-to-r from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 text-purple-700 dark:from-purple-900/30 dark:to-pink-900/30 dark:hover:from-purple-800/40 dark:hover:to-pink-800/40 dark:text-purple-300'
+        'bg-gradient-to-r from-yellow-50 to-amber-200 hover:from-yellow-100 hover:to-amber-300 text-amber-800 dark:from-yellow-700/30 dark:to-amber-700/30 dark:hover:from-yellow-600/40 dark:hover:to-amber-600/40 dark:text-amber-100'
     }
   ] as const;
 
@@ -58,13 +58,16 @@ export function DiaperTracker() {
         </div>
 
         <div className='flex flex-col md:flex-row gap-6 justify-center items-center'>
-          {diaperTypes.map(({ type, label, icon: Icon, color }) => (
+          {diaperTypes.map(({ type, label, icon, color }) => (
             <Button
               key={type}
               onClick={() => handleDiaperChange(type)}
-              className={`flex flex-col items-center gap-2 p-6 h-auto w-full md:w-48 rounded-2xl transition-all duration-200 border-2 border-transparent hover:border-pastel-primary/20 ${color}`}
+              className={cn(
+                'flex flex-col items-center gap-2 p-6 h-auto w-full md:w-48 rounded-3xl transition-all duration-200',
+                color
+              )}
             >
-              <Icon className='w-8 h-8' />
+              <span className='text-3xl'>{icon}</span>
               <span className='text-lg font-medium'>{label}</span>
             </Button>
           ))}

@@ -40,7 +40,7 @@ export function FeedingHistory() {
               {feedings.map(feeding => (
                 <div
                   key={feeding.id}
-                  className='bg-white/50 dark:bg-gray-800/50 rounded-lg p-3 border border-pastel-primary/10'
+                  className='bg-white/50 dark:bg-gray-800/50 rounded-3xl p-3 border border-pastel-primary/10'
                 >
                   <div className='flex justify-between items-start'>
                     <div>
