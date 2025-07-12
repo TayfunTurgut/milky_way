@@ -5,6 +5,7 @@ import '../styles/pastel-palette.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/sonner';
 import { ModeToggle } from '@/components/mode-toggle';
+import { Analytics } from '@vercel/analytics/next';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -44,6 +45,7 @@ export default function RootLayout({
             <ModeToggle />
           </div>
           {children}
+          <Analytics />
         </ThemeProvider>
         <Toaster />
       </body>
