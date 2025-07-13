@@ -10,6 +10,7 @@ import { History, Droplets, Zap, Baby } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTrackingStore } from '@/store';
 import { ClearButton } from '@/components/clear-button';
+import { DiaperStats } from '@/components/diaper/diaper-stats';
 
 export function DiaperHistory() {
   const { diapers } = useTrackingStore();
@@ -58,6 +59,7 @@ export function DiaperHistory() {
             View your recent diaper changes
           </DialogDescription>
         </DialogHeader>
+        <DiaperStats />
         <div className='max-h-96 overflow-y-auto'>
           {diapers.length ? (
             <div className='space-y-3'>
