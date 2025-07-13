@@ -54,7 +54,7 @@ export function FeedingHistory() {
                     <div className='flex items-center gap-2'>
                       <div className='text-right'>
                         <div className='text-sm font-medium text-pastel-primary'>
-                          {feeding.duration
+                          {feeding.duration !== undefined
                             ? `${Math.floor(feeding.duration / 60)}:${(feeding.duration % 60).toString().padStart(2, '0')}`
                             : 'Ongoing'}
                         </div>
