@@ -1,5 +1,5 @@
 import { useTrackingStore } from '@/store';
-import { useState, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ClientOnly } from '@/components/client-only';
 import { useInterval } from '@/hooks/use-interval';
 
@@ -16,16 +16,17 @@ function useFeedingTimer(side: 'left' | 'right') {
     return lastFeeding?.active && lastFeeding.side === side;
   }, [lastFeeding, side]);
 
-  useInterval(
-    () => {
-      if (!shouldShow || !lastFeeding) return;
+  const updateElapsed = () => {
+    if (!shouldShow || !lastFeeding) return;
 
-      const now = new Date().getTime();
-      const start = new Date(lastFeeding.timestamp).getTime();
-      setElapsed(Math.floor((now - start) / 1000));
-    },
-    shouldShow && lastFeeding ? 1000 : null
-  );
+    const now = new Date().getTime();
+    const start = new Date(lastFeeding.timestamp).getTime();
+    setElapsed(Math.floor((now - start) / 1000));
+  };
+
+  useEffect(() => updateElapsed(), [shouldShow, lastFeeding]);
+
+  useInterval(() => updateElapsed(), shouldShow && lastFeeding ? 1000 : null);
 
   const minutes = Math.floor(elapsed / 60);
   const seconds = elapsed % 60;
